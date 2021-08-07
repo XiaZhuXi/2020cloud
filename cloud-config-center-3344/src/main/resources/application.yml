@@ -1,0 +1,36 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Xia-feng1/springcloud2020-config.git #github上的仓库名字
+          ####搜索目录
+          search-paths:
+            - springcloud2020-config
+          username: 2914255347@qq.com
+          password: x20011231
+          skip-ssl-validation: true
+      ###读取分支
+      label: master
+#RabbitMQ的相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+#rabbitMQ相关配置暴露bus刷新的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

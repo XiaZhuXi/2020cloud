@@ -1,0 +1,33 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    alibaba:
+      seata:
+        #自定义的事物名称需要与seata-server中的匹配
+        tx-service-group: seata_tx_group
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+
+#对openfeign支持
+feign:
+  hystrix:
+    enabled: false
+    
+logging:
+  level:
+    io:
+      seata: info
+mybatis:
+  mapperLocations: classpath:mapper/*.xml

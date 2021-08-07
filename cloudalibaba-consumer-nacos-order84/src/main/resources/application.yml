@@ -1,0 +1,23 @@
+server:
+  port: 84
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        #        配置sentinel的dashboard地址
+        dashboard: localhost:8080
+        #        默认为8791如果被占有自8791向下加1
+        port: 8791
+
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+
+#激活sentinel对openfeign支持
+feign:
+  sentinel:
+    enabled: true
